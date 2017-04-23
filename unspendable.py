@@ -11,7 +11,6 @@ def base58_check_encode(b, version):
     d = version + b
     address = d + dhash(d)[:4]
 
-    # Convert big‐endian bytes to integer
     n = int('0x0' + binascii.hexlify(address).decode('utf8'), 16)
 
     # Divide that integer into base58
@@ -64,8 +63,8 @@ def generate (name, network):
         prefix_string = 'mv'
         prefix_bytes = b'\x6f'
     elif network == 'mainnet':
-        prefix_string = '1'
-        prefix_bytes = b'\x00'
+        prefix_string = 'P'
+        prefix_bytes = b'\x37'
     else:
         raise Exception('unknown network')
 
